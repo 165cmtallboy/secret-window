@@ -29,6 +29,7 @@ document.getElementById('btn').onclick = () => {
               try{
                 w.document.body.innerHTML = res;
               } catch(err){
+                // クロスオリジンでエラー(URLバーが直接編集されたような場合)は、windowを閉じる
                 w.close();
               }
               resetHandler();
