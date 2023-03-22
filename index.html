@@ -12,15 +12,24 @@ document.getElementById('btn').onclick = () => {
   fetch('/supersecret.html', {method: 'GET'})
     .then(data => data.text())
     .then(res => {
+
+        // ウィンドウを作成する
         let w = window.open('','_blank', 'popup=1');
+
+        // 初期状態としてHTMLを直接挿入
         w.document.body.innerHTML = res
 
+
+        // ページがリロードされた時のハンドラー
         const resetHandler = () => {
           w.addEventListener('beforeunload', () => {
+
+            // もしリロードされたら、0.1秒待ってHTMLを挿入しハンドラーをリセットする
             setTimeout(() => {
               w.document.body.innerHTML = res;
               resetHandler();
             }, 100);
+            
           });
         }
 
