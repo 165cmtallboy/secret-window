@@ -1,0 +1,19 @@
+
+
+URL非表示のページを開くテスト<br>
+
+<br>
+<button id="btn">開く</button>
+
+<script>
+
+document.getElementById('btn').onclick = () => {
+
+  let w = window.open("","_blank", "popup=1");
+  
+  fetch('/supersecret.html', {method: 'GET'})
+    .then(data => data.text())
+    .then(res => w.document.body.innerHTML = res)
+}
+
+</script>
